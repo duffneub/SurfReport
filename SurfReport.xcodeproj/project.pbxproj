@@ -11,6 +11,7 @@
 		17C40008260E330400FAACA7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C40007260E330400FAACA7 /* ContentView.swift */; };
 		17C4000A260E330600FAACA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17C40009260E330600FAACA7 /* Assets.xcassets */; };
 		17C4000D260E330600FAACA7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17C4000C260E330600FAACA7 /* Preview Assets.xcassets */; };
+		17C40016260E332C00FAACA7 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C40015260E332C00FAACA7 /* LogInView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		17C40009260E330600FAACA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17C4000C260E330600FAACA7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		17C4000E260E330600FAACA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17C40015260E332C00FAACA7 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,7 @@
 			children = (
 				17C40005260E330400FAACA7 /* SurfReportApp.swift */,
 				17C40007260E330400FAACA7 /* ContentView.swift */,
+				17C40018260E332F00FAACA7 /* Authentication */,
 				17C40009260E330600FAACA7 /* Assets.xcassets */,
 				17C4000E260E330600FAACA7 /* Info.plist */,
 				17C4000B260E330600FAACA7 /* Preview Content */,
@@ -59,6 +62,14 @@
 				17C4000C260E330600FAACA7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		17C40018260E332F00FAACA7 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				17C40015260E332C00FAACA7 /* LogInView.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		17C4FFF9260E330400FAACA7 = {
@@ -138,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17C40016260E332C00FAACA7 /* LogInView.swift in Sources */,
 				17C40008260E330400FAACA7 /* ContentView.swift in Sources */,
 				17C40006260E330400FAACA7 /* SurfReportApp.swift in Sources */,
 			);
