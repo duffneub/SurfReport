@@ -1,5 +1,5 @@
 //
-//  LogInView.swift
+//  SignInView.swift
 //  SurfReport
 //
 //  Created by Duff Neubauer on 3/26/21.
@@ -38,7 +38,7 @@ class LogInViewModel : ObservableObject {
     }
 }
 
-struct LogInView: View {
+struct SignInView: View {
     @StateObject private var viewModel = LogInViewModel()
 
     var body: some View {
@@ -124,6 +124,6 @@ struct SurfReportButtonStyle : ButtonStyle {
 
 struct LogInView_Previews: PreviewProvider {
     static var previews: some View {
-        LogInView()
+        SignInView()
     }
 }

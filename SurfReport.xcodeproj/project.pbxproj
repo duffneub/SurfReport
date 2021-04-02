@@ -7,21 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		176FF6EC2617BCC400275C2D /* AppButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176FF6EB2617BCC400275C2D /* AppButtonStyle.swift */; };
+		176FF6F02617BCD600275C2D /* AppTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176FF6EF2617BCD600275C2D /* AppTextFieldStyle.swift */; };
+		176FF6F62617C0B600275C2D /* AuthenticationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176FF6F52617C0B600275C2D /* AuthenticationStore.swift */; };
 		17C40006260E330400FAACA7 /* SurfReportApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C40005260E330400FAACA7 /* SurfReportApp.swift */; };
-		17C40008260E330400FAACA7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C40007260E330400FAACA7 /* ContentView.swift */; };
 		17C4000A260E330600FAACA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17C40009260E330600FAACA7 /* Assets.xcassets */; };
 		17C4000D260E330600FAACA7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17C4000C260E330600FAACA7 /* Preview Assets.xcassets */; };
-		17C40016260E332C00FAACA7 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C40015260E332C00FAACA7 /* LogInView.swift */; };
+		17C40016260E332C00FAACA7 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C40015260E332C00FAACA7 /* SignInView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		176FF6EB2617BCC400275C2D /* AppButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppButtonStyle.swift; sourceTree = "<group>"; };
+		176FF6EF2617BCD600275C2D /* AppTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextFieldStyle.swift; sourceTree = "<group>"; };
+		176FF6F52617C0B600275C2D /* AuthenticationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationStore.swift; sourceTree = "<group>"; };
 		17C40002260E330400FAACA7 /* SurfReport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurfReport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17C40005260E330400FAACA7 /* SurfReportApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfReportApp.swift; sourceTree = "<group>"; };
-		17C40007260E330400FAACA7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		17C40009260E330600FAACA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17C4000C260E330600FAACA7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		17C4000E260E330600FAACA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		17C40015260E332C00FAACA7 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		17C40015260E332C00FAACA7 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +39,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		176FF6EA2617BC8E00275C2D /* UI Styles */ = {
+			isa = PBXGroup;
+			children = (
+				176FF6EB2617BCC400275C2D /* AppButtonStyle.swift */,
+				176FF6EF2617BCD600275C2D /* AppTextFieldStyle.swift */,
+			);
+			path = "UI Styles";
+			sourceTree = "<group>";
+		};
 		17C40003260E330400FAACA7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -47,8 +60,8 @@
 			isa = PBXGroup;
 			children = (
 				17C40005260E330400FAACA7 /* SurfReportApp.swift */,
-				17C40007260E330400FAACA7 /* ContentView.swift */,
 				17C40018260E332F00FAACA7 /* Authentication */,
+				176FF6EA2617BC8E00275C2D /* UI Styles */,
 				17C40009260E330600FAACA7 /* Assets.xcassets */,
 				17C4000E260E330600FAACA7 /* Info.plist */,
 				17C4000B260E330600FAACA7 /* Preview Content */,
@@ -67,7 +80,8 @@
 		17C40018260E332F00FAACA7 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				17C40015260E332C00FAACA7 /* LogInView.swift */,
+				17C40015260E332C00FAACA7 /* SignInView.swift */,
+				176FF6F52617C0B600275C2D /* AuthenticationStore.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -149,8 +163,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17C40016260E332C00FAACA7 /* LogInView.swift in Sources */,
-				17C40008260E330400FAACA7 /* ContentView.swift in Sources */,
+				176FF6F62617C0B600275C2D /* AuthenticationStore.swift in Sources */,
+				17C40016260E332C00FAACA7 /* SignInView.swift in Sources */,
+				176FF6F02617BCD600275C2D /* AppTextFieldStyle.swift in Sources */,
+				176FF6EC2617BCC400275C2D /* AppButtonStyle.swift in Sources */,
 				17C40006260E330400FAACA7 /* SurfReportApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,9 +9,20 @@ import SwiftUI
 
 @main
 struct SurfReportApp: App {
+    @StateObject private var authStore = AuthenticationStore()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Text("Logged In!")
+                .popover(isPresented: shouldShowSignIn()) {
+                    SignInView()
+                        .environmentObject(authStore)
+                        .buttonStyle(AppButtonStyle())
+                }
         }
+    }
+
+    private func shouldShowSignIn() -> Binding<Bool> {
+        .init(get: { !authStore.isSignedIn }, set: { authStore.isSignedIn = !$0 })
     }
 }
