@@ -7,63 +7,23 @@
 
 import SwiftUI
 
-struct LogInView: View {
-    @State private var email: String = ""
-    @State private var password: String = ""
+class LogInViewModel : ObservableObject {
+    @Published var email: String = ""
+    @Published var password: String = ""
 
-    var body: some View {
-        VStack(alignment: .leading, spacing: 50) {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Welcome back!")
-                    .font(.title)
-                Text("Login to continue.")
-                    .font(.title)
-                    .foregroundColor(.secondary)
-            }
+    let primaryWelcomeText: String = "Welcome back!"
+    let secondaryWelcomeText: String = "Login to continue."
 
-            VStack {
-                Group {
-                    TextField(
-                        "Email",
-                        text: $email
-                    )
-                        .autocapitalization(.none)
-                        .textContentType(.emailAddress)
-                        .keyboardType(.emailAddress)
-                        .padding()
-                        .frame(height: height)
-                        .frame(maxWidth: .infinity)
-                        .background(
-                            RoundedRectangle(cornerRadius: cornerRadius)
-                                .foregroundColor(fieldBackgroundColor))
-                    SecureField("Password", text: $password)
-                        .padding()
-                        .frame(height: height)
-                        .frame(maxWidth: .infinity)
-                        .background(
-                            RoundedRectangle(cornerRadius: cornerRadius)
-                                .foregroundColor(fieldBackgroundColor))
-                }
-            }
+    let emailPlaceholder: String = "Email"
+    let passwordPlaceholder: String = "Password"
 
-            Button("Login", action: login)
-                .accentColor(.white)
-                .disabled(loginDisabled)
-                .padding()
-                .frame(height: height)
-                .frame(maxWidth: .infinity)
-                .background(
-                    RoundedRectangle(cornerRadius: cornerRadius)
-                        .foregroundColor(loginDisabled ? .gray : .accentColor))
-        }
-        .padding()
+    let logInText: String = "Log In"
+
+    func logIn() {
+        print("Log In: \(email), \(password)")
     }
 
-    private func login() {
-        print("Login: \(email), \(password)")
-    }
-
-    private var loginDisabled: Bool {
+    var logInDisabled: Bool {
         !(emailIsValid && passwordIsValid)
     }
 
@@ -76,12 +36,90 @@ struct LogInView: View {
     private var passwordIsValid: Bool {
         password.count > 5
     }
+}
+
+struct LogInView: View {
+    @StateObject private var viewModel = LogInViewModel()
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 50) {
+            VStack(alignment: .leading, spacing: 0) {
+                Text(viewModel.primaryWelcomeText)
+                    .font(.title)
+                Text(viewModel.secondaryWelcomeText)
+                    .font(.title)
+                    .foregroundColor(.secondary)
+            }
+
+            VStack {
+                Group {
+                    TextField(viewModel.emailPlaceholder, text: $viewModel.email)
+                        .autocapitalization(.none)
+                        .textContentType(.emailAddress)
+                        .keyboardType(.emailAddress)
+                    SecureField(viewModel.passwordPlaceholder, text: $viewModel.password)
+
+                }
+                .styleTextField(SurfReportTextFieldStyle())
+            }
+
+            Button(viewModel.logInText, action: viewModel.logIn)
+                .buttonStyle(SurfReportButtonStyle(isDisabled: viewModel.logInDisabled))
+
+        }
+        .padding()
+    }
 
     // MARK: - View Constants
 
     let height: CGFloat = 50
     let cornerRadius: CGFloat = 8
     let fieldBackgroundColor = Color(.tertiarySystemGroupedBackground)
+}
+
+extension View {
+    func styleTextField<Style : ViewModifier>(_ style: Style) -> some View {
+        modifier(style)
+    }
+}
+
+struct SurfReportTextFieldStyle : ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding()
+            .frame(height: height)
+            .frame(maxWidth: .infinity)
+            .background(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .foregroundColor(fieldBackgroundColor))
+    }
+
+    // MARK: - View Constants
+
+    let height: CGFloat = 50
+    private let cornerRadius: CGFloat = 8
+    private let fieldBackgroundColor = Color(.tertiarySystemGroupedBackground)
+}
+
+struct SurfReportButtonStyle : ButtonStyle {
+    let isDisabled: Bool
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .disabled(isDisabled)
+            .padding()
+            .frame(height: height)
+            .frame(maxWidth: .infinity)
+            .foregroundColor(.white)
+            .background(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .foregroundColor(isDisabled ? .secondary : .accentColor))
+    }
+
+    // MARK: - View Constants
+
+    private let height: CGFloat = 50
+    private let cornerRadius: CGFloat = 8
 }
 
 struct LogInView_Previews: PreviewProvider {
