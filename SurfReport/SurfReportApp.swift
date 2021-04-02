@@ -19,15 +19,11 @@ struct SurfReportApp: App {
     var body: some Scene {
         WindowGroup {
             Text("Logged In!")
-                .popover(isPresented: shouldShowSignIn()) {
+                .popover(isPresented: .constant(!authStore.isSignedIn)) {
                     SignInView()
                         .environmentObject(authStore)
                         .buttonStyle(AppButtonStyle())
                 }
         }
-    }
-
-    private func shouldShowSignIn() -> Binding<Bool> {
-        .init(get: { !authStore.isSignedIn }, set: { authStore.isSignedIn = !$0 })
     }
 }

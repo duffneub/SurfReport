@@ -6,9 +6,14 @@
 //
 
 import Foundation
+import Firebase
 
 class AuthenticationStore : ObservableObject {
-    @Published var isSignedIn: Bool = false
+    @Published private var loggedInUser: String?
+
+    var isSignedIn: Bool {
+        loggedInUser != nil
+    }
 
     func emailIsValid(_ email: String) -> Bool {
         let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -21,6 +26,13 @@ class AuthenticationStore : ObservableObject {
     }
 
     func signIn(email: String, password: String) {
-        isSignedIn = true
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
+            guard let result = result, error == nil else {
+                print("Error: \(error!)")
+                return
+            }
+
+            self?.loggedInUser = result.user.uid
+        }
     }
 }
