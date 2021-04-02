@@ -23,6 +23,12 @@ struct SurfReportApp: App {
                     SignInView()
                         .environmentObject(authStore)
                         .buttonStyle(AppButtonStyle())
+                        .alert(isPresented: .constant(authStore.signInError != nil)) {
+                            Alert(
+                                title: Text("Failed to Sign In"),
+                                message: Text(authStore.signInError!.localizedDescription),
+                                dismissButton: nil)
+                        }
                 }
         }
     }

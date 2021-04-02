@@ -9,10 +9,11 @@ import Foundation
 import Firebase
 
 class AuthenticationStore : ObservableObject {
-    @Published private var loggedInUser: String?
+    @Published private var userID: String?
+    @Published var signInError: Error?
 
     var isSignedIn: Bool {
-        loggedInUser != nil
+        userID != nil
     }
 
     func emailIsValid(_ email: String) -> Bool {
@@ -28,11 +29,11 @@ class AuthenticationStore : ObservableObject {
     func signIn(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
             guard let result = result, error == nil else {
-                print("Error: \(error!)")
+                self?.signInError = error
                 return
             }
 
-            self?.loggedInUser = result.user.uid
+            self?.userID = result.user.uid
         }
     }
 }
