@@ -10,10 +10,14 @@ import Firebase
 
 @main
 struct SurfReportApp: App {
-    @StateObject private var authStore = AuthenticationStore()
+    @StateObject private var authStore: AuthenticationStore
 
     init() {
         FirebaseApp.configure()
+
+        let authService = FirebaseAuth()
+
+        _authStore = .init(wrappedValue: AuthenticationStore(service: authService))
     }
 
     var body: some Scene {

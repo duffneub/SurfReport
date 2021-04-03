@@ -5,8 +5,8 @@
 //  Created by Duff Neubauer on 4/2/21.
 //
 
+import Combine
 import Foundation
-import Firebase
 
 class AuthenticationStore : ObservableObject {
     @Published private var userID: String?
@@ -14,6 +14,13 @@ class AuthenticationStore : ObservableObject {
 
     var isSignedIn: Bool {
         userID != nil
+    }
+
+    private let service: AuthenticationService
+    private var subscriptions = Set<AnyCancellable>()
+
+    init(service: AuthenticationService) {
+        self.service = service
     }
 
     func emailIsValid(_ email: String) -> Bool {
@@ -27,13 +34,15 @@ class AuthenticationStore : ObservableObject {
     }
 
     func signIn(email: String, password: String) {
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
-            guard let result = result, error == nil else {
-                self?.signInError = error
-                return
+        service
+            .signIn(withEmail: email, password: password)
+            .sink { [weak self] completion in
+                if case let .failure(error) = completion {
+                    self?.signInError = error
+                }
+            } receiveValue: { [weak self] uid in
+                self?.userID = uid
             }
-
-            self?.userID = result.user.uid
-        }
+            .store(in: &subscriptions)
     }
 }

@@ -57,10 +57,12 @@ struct SignInView : View {
     }
 }
 
+import Combine
+
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
         SignInView()
-            .environmentObject(AuthenticationStore())
+            .environmentObject(AuthenticationStore(service: FakeAuthenticationService()))
             .buttonStyle(AppButtonStyle())
     }
 }
