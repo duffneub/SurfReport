@@ -1,6 +1,0 @@
-framework module Pods_SurfReport {
-  umbrella header "Pods-SurfReport-umbrella.h"
-
-  export *
-  module * { export * }
-}
